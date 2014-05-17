@@ -1,0 +1,48 @@
+div#layout_container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+div#top {
+    text-align: right;
+    margin-bottom: 2px;
+}
+
+div#left {
+    float: left;
+    width: 250px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+div#content {
+    margin-left: 250px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding-left: 10px;
+}
+
+div#footer {
+    clear: inherit;
+    width: 100%;
+    text-align: center;
+    color: #000000;
+    margin: 0 auto;
+    padding: 2px;
+}
+
+div.box {
+    width: 100%;
+    text-align: center;
+    background-color: rgba(242, 208, 144, 0.41);
+    border: thin solid #000000;
+    margin: 0 auto;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+div.box h1 {
+    color: #000000;
+    margin: 0 auto;
+    padding: 8px;
+}

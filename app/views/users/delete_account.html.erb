@@ -1,0 +1,5 @@
+<h2>Delete account</h2>
+
+<p>
+  <%= button_to 'Delete', registration_path(resource_name), data: { confirm: 'Are you sure?' }, controller: :devise, method: :delete %>
+</p>

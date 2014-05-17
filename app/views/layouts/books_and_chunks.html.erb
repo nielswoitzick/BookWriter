@@ -1,0 +1,4 @@
+<% content_for :left do %>
+  <%= render partial: 'shared/books_tree', :locals => {:books => user_books} %>
+<% end %>
+<%= render template: "layouts/application" %>
