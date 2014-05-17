@@ -6,6 +6,10 @@ class Book < ActiveRecord::Base
 
   before_destroy :destroy_chunks
 
+  validates :title, :presence => true
+  validates :edition, numericality: { only_integer: true, greater_than: 0 }
+  validates :published, :presence => true
+
   def has_chunks?
     !chunks.empty?
   end

@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   layout 'books_and_chunks'
   before_filter :authenticate_user!
-  before_filter :find_all_users, :only => [:new, :edit]
+  before_filter :find_all_users, :only => [:new, :edit, :create]
 
   # GET /books
   # GET /books.json
