@@ -40,7 +40,7 @@
 <br/><br/><br/>
 
 <h2><%= t('views.chunk.index.title') %></h2>
-<%= render partial: 'shared/chunks' %>
+<%= render partial: 'chunks/chunk_list' %>
 
 <% unless @book.closed? %>
     <%= button_to I18n.t('views.chunk.index.new'), new_book_chunk_path(@book), method: :get %>
