@@ -4,18 +4,6 @@ class ChunksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_book
 
-=begin
-  def index
-    @book = Book.find(params[:book_id])
-    @chunks = @book.chunks
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @chunks }
-    end
-  end
-=end
-
   def show
     @chunk = Chunk.find(params[:id])
 
