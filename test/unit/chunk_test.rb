@@ -1,7 +1,13 @@
 require 'test_helper'
 
 class ChunkTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  test 'username' do
+    chunk = Chunk.new
+    user = users(:mmuster)
+    chunk.user = user
+    assert_equal(chunk.username, user.username)
+  end
+
+
 end

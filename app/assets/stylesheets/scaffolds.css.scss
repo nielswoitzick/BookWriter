@@ -12,6 +12,10 @@ p, ol, ul, td {
   line-height: 18px;
 }
 
+b {
+  font-style: italic;
+}
+
 pre {
   background-color: #eee;
   padding: 10px;
@@ -24,8 +28,8 @@ a {
     color: #666;
   }
   &:hover {
-    color: #000000;
-    background-color: rgba(242, 208, 144, 0.41);
+    color: #fff;
+    background-color: #000;
   }
 }
 
@@ -33,6 +37,11 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
+}
+
+input {
+  /* top right bottom left */
+  margin: 0 0 10px 0;
 }
 
 #notice {
@@ -66,4 +75,8 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+h3 {
+  color: #B40431;
 }

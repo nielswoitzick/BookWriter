@@ -8,33 +8,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <div id="layout_container">
+
   <div id="top">
     <% if user_signed_in? %>
-      <%= link_to 'Home', books_path %> |
-      <%= "Account: #{current_user.email}" %> |
-      <%= link_to 'My profile', edit_user_registration_path %> |
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+        <%= link_to I18n.t('views.layout.home'), books_path %> |
+        <%= "#{I18n.t('views.layout.account')}: #{current_user.username}" %> |
+        <%= link_to I18n.t('views.layout.my_account'), edit_user_registration_path %> |
+        <%= link_to I18n.t('views.layout.logout'), destroy_user_session_path, method: :delete %>
     <% end %>
   </div>
+
   <div class="box">
     <h1>Collaborative Book Writing</h1>
   </div>
+
   <div id="left">
     <%= yield :left %>
   </div>
+
   <div id="content">
     <% if flash[:notice] %>
-      <p id="notice"><%= flash[:notice] %></p>
+        <p id="notice"><%= flash[:notice] %></p>
     <% end %>
     <% if flash[:error] %>
-      <p id="error"><%= flash[:error] %></p>
+        <p id="error"><%= flash[:error] %></p>
     <% end %>
     <%= yield %>
+
   </div>
+
   <div id="footer">
     <p>&copy; Collaborative Book Writing Team 2014</p>
   </div>
 </div>
+
 </body>
 </html>

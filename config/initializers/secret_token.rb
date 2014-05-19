@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-BookWriter::Application.config.secret_token = '31420ee95d8734b7b8147c03b11e91ef336d75799ca52ec814f04ff1ce6c64ce7bef4a0b6edc860bc87b8715e426256f8a24dc5de88675ddb9e228b841739658'
+BookWriter::Application.config.secret_token = '6239e115cf47c9727c3c43143ea181a854c8a0a867a7e3cd5bf790c8e01879f9161aa850ff59f867fa20ba23da88ff5af6ab1937cb27d59d7a8979b4460bac99'

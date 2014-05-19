@@ -4,9 +4,11 @@ BookWriter::Application.routes.draw do
   # Startseite der Applikation
   root :to => 'books#index'
 
-  # verschachtelte Ressourcen
   resources :books do
-    resources :chunks
+    get 'print', :on => :member
+    post 'close', :on => :member
+    get 'new_edition', :on => :member
+    resources :chunks, :except => [:index]
   end
 
   devise_for :users

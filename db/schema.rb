@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140512104941) do
+ActiveRecord::Schema.define(:version => 20130816215113) do
 
   create_table "books", :force => true do |t|
     t.string   "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20140512104941) do
     t.string   "tags"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "closed"
   end
 
   create_table "books_users", :id => false, :force => true do |t|
@@ -37,10 +38,8 @@ ActiveRecord::Schema.define(:version => 20140512104941) do
     t.integer  "book_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "position"
   end
-
-  add_index "chunks", ["book_id"], :name => "index_chunks_on_book_id"
-  add_index "chunks", ["user_id"], :name => "index_chunks_on_user_id"
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -68,11 +67,12 @@ ActiveRecord::Schema.define(:version => 20140512104941) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

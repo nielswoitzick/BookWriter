@@ -1,6 +1,29 @@
 class UsersController < ApplicationController
-  layout 'user_self_administration', :only => [:edit, :update_password, :edit_password, :delete_account]
+  layout 'user_self_administration', :only => [:update_password, :edit_password, :delete_account]
 
+  # GET /users/update_password
+  def update_password
+    @user = User.find(current_user.id)
+  end
+
+  # GET /users/delete_account
+  def delete_account
+    @user = User.find(current_user.id)
+  end
+
+  # PUT /users/edit_password
+  def edit_password
+    @user = User.find(current_user.id)
+    if @user.update_with_password(params[:user])
+      # Sign in the user by passing validation in case his password changed
+      sign_in @user, :bypass => true
+      redirect_to root_path, notice: I18n.t('views.user.flash_messages.password_changed')
+    else
+      render action: 'update_password'
+    end
+  end
+
+=begin
   # GET /users
   # GET /users.json
   def index
@@ -39,28 +62,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # GET /users/update_password
-  def update_password
-    @user = User.find(current_user.id)
-  end
-
-  # GET /users/delete_account
-  def delete_account
-    @user = User.find(current_user.id)
-  end
-
-  # PUT /users/edit_password
-  def edit_password
-    @user = User.find(current_user.id)
-    if @user.update_with_password(params[:user])
-      # Sign in the user by passing validation in case his password changed
-      sign_in @user, :bypass => true
-      redirect_to root_path, notice: 'Password changed.'
-    else
-      render action: 'update_password'
-    end
-  end
-
   # POST /users
   # POST /users.json
   def create
@@ -68,7 +69,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: I18n.t('views.user.flash_messages.book_was_successfully_created') }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -84,7 +85,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: I18n.t('views.user.flash_messages.book_was_successfully_updated') }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -104,4 +105,5 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+=end
 end

@@ -1,5 +1,5 @@
-<h1>Editing book</h1>
+<h1><%= t 'views.book.edit.title' %></h1>
 
 <%= render 'form' %>
 
-<%= button_to 'Back', @book, method: :get %>
+<%= button_to I18n.t('views.back'), @book, method: :get %>

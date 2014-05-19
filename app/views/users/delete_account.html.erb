@@ -1,5 +1,7 @@
-<h2>Delete account</h2>
+<h2><%= t('views.user.delete_account.cancel_my_account', :default => 'Cancel my account') %></h2>
 
 <p>
-  <%= button_to 'Delete', registration_path(resource_name), data: { confirm: 'Are you sure?' }, controller: :devise, method: :delete %>
+  <%= t('views.user.delete_account.unhappy', :default => 'Unhappy') %>? <%= button_to t('views.user.delete_account.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, controller: :devise, :method => :delete %>
 </p>
+
+<%= button_to t('views.back', :default => 'Back'), :back, :method => :get %>

@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class BooksControllerTest < ActionController::TestCase
+=begin
   setup do
-    @book = books(:one)
+    @book = books(:rails_tests)
   end
 
   test "should get index" do
@@ -46,4 +47,5 @@ class BooksControllerTest < ActionController::TestCase
 
     assert_redirected_to books_path
   end
+=end
 end

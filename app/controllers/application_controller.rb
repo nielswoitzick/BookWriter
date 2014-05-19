@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def render_check_template
-    if params[:render_template] == 'false'
-      render layout: false
-    end
+  def render_check_template(action=params[:action])
+    render action, layout: params[:render_template] != 'false'
   end
+
 end
