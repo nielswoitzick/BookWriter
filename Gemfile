@@ -7,10 +7,15 @@ gem 'rails', '3.2.17'
 
 gem 'mysql2'
 
-gem 'devise'	            # Benutzermanagement
-gem 'paper_trail', '~> 2'	# Wird von Paperclip (s.u.) benötigt
-gem 'paperclip', '~> 3.0'	# Versionierung
-gem 'ckeditor'	          # WYSIWYG-Editor
+gem 'rails-i18n'            # Internationalisierung für rails
+gem 'devise'                # Benutzermanagement
+gem 'devise-i18n'           # Internationalisierung für devise
+gem 'devise-i18n-views'     # Internationalisierte devise-Views
+gem 'paper_trail', '~> 2'   # Versionierung
+gem 'paperclip', '~> 3.0'   # Wird von paper_trail benötigt
+gem 'ckeditor'              # WYSIWYG-Editor
+gem 'wkhtmltopdf-binary'    # PDF-Generierung aus HTML-Daten
+gem 'wicked_pdf'            # PDF-Export
 
 
 # Gems used only for assets and not required
