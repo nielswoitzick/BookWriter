@@ -34,7 +34,7 @@
   <% end %>
   <%= button_to I18n.t('views.book.new_edition'), new_edition_book_path(@book), method: :get %>
   <%= button_to I18n.t('views.book.export.pdf'), print_book_path(@book, :format => 'pdf'), method: :get %>
-  <%= button_to I18n.t('views.destroy'), @book, method: :delete, data: {confirm: I18n.t('views.are_you_sure')}, remote: true %>
+  <%= button_to I18n.t('views.destroy'), @book, method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %>
 </div>
 
 <br/><br/><br/>
