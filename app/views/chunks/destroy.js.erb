@@ -1,0 +1,5 @@
+<% if @book.has_chunks? %>
+  $("#<%= @chunk.tag_id %>").remove();
+<% else %>
+  $("#chunks").html("<%= escape_javascript(render partial: 'shared/chunks') %>");
+<% end %>

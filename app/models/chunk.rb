@@ -26,6 +26,10 @@ class Chunk < ActiveRecord::Base
     attributes.slice('title', 'section', 'content', 'user_id')
   end
 
+  def tag_id
+    'chunk_' + id.to_s
+  end
+
   def original_updated_at
     @original_updated_at || updated_at.to_f
   end
