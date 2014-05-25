@@ -1,0 +1,30 @@
+# ruby encoding: utf-8
+
+de:
+  views:
+    show: Anzeigen
+    edit: Editieren
+    destroy: Löschen
+    are_you_sure: Sind Sie sicher?
+    update: Aktualisieren
+    back: Zurück
+    edit: Editieren
+    user:
+      index:
+        title: Benutzerliste
+        new: Neuer Benutzer
+      edit:
+        title: Benutzerdaten ändern
+      new:
+        title: Neuer Benutzer
+      update_password:
+        title: Passwort ändern
+        we_need_your_current_password_to_confirm_your_changes: wir benötigen Ihr aktuelles Passwort, um die Änderung zu bestätigen
+      delete_account:
+        cancel_my_account: Konto löschen
+        unhappy: Nicht zufrieden mit BookWriter
+        are_you_sure: Sind Sie sicher?
+      flash_messages:
+        password_changed: 'Passwort wurde erfolgreich geändert.'
+        user_was_successfully_created: 'Der Benutzer wurde erfolgreich angelegt.'
+        user_was_successfully_updated: 'Der Benutzer wurde erfolgreich aktualisiert.'
