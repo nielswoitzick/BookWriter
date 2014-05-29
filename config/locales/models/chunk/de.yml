@@ -11,4 +11,5 @@ de:
         version: 'Version'
         user: 'Autor'
         content: 'Inhalt'
-
+    messages:
+      invalid_section: 'entspricht nicht dem erwarteten Format'

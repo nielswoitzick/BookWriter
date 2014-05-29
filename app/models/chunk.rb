@@ -13,9 +13,11 @@ class Chunk < ActiveRecord::Base
 
   before_validation { self.position ||= book.max_chunk_position + 1 }
 
-  validates_presence_of :title, :book_id, :user_id, :position
+  validates_presence_of :title, :section, :book_id, :user_id, :position
   validates :title, :uniqueness => {:scope => :book_id}
   validates :position, :uniqueness => {:scope => :book_id}
+  validates :section, :format => {:with => /\A[1-9][0-9]*(\.[1-9][0-9]*)*\z/,
+                                  :message => I18n.t('activerecord.messages.invalid_section')}
   validate :handle_conflict, only: :update
 
   def username
