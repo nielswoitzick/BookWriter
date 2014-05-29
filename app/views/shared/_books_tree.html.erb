@@ -3,8 +3,8 @@
     <% books.each do |book| %>
         <li id="book<%= book.id %>" class="book" data-closed="<%= book.closed? %>" data-edit_path="<%= edit_book_path(book) %>" data-new_chunk_path="<%= new_book_chunk_path(book) %>"><%= link_to "#{book.title} (#{book.edition})", book %>
           <ul>
-            <% book.chunks.each do |chunk| %>
-                <li id="chunk<%= chunk.id %>" class="chunk" data-delete_path="<%= book_chunk_path(book, chunk) %>"><%= link_to chunk.title, book.closed? ? book_chunk_path(book, chunk) : edit_book_chunk_path(book, chunk) %></li>
+            <% book.sorted_chunks.each do |chunk| %>
+                <li id="chunk<%= chunk.id %>" class="chunk" data-delete_path="<%= book_chunk_path(book, chunk) %>"><%= link_to chunk.section + ' ' + chunk.title, book.closed? ? book_chunk_path(book, chunk) : edit_book_chunk_path(book, chunk) %></li>
             <% end %>
           </ul>
         </li>

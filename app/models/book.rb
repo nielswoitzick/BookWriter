@@ -34,6 +34,10 @@ class Book < ActiveRecord::Base
     users.collect { |u| u.first_name + ' ' + u.last_name }.join(',')
   end
 
+  def sorted_chunks
+    chunks.sort {|a,b| a.section.to_s.casecmp b.section}
+  end
+
   private
   def destroy_chunks
     chunks.each do |chunk|

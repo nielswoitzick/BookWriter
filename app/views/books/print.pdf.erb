@@ -19,7 +19,7 @@
 </div>
 
 <% if @book.has_chunks? %>
-    <% @book.chunks.each do |chunk| %>
+    <% @book.sorted_chunks.each do |chunk| %>
         <div class="chapter">
           <h1><%= chunk.title %></h1>
           <%= raw chunk.content %>
