@@ -3,4 +3,5 @@
   $("#<%= @chunk.tag_tree_id %>").remove();
 <% else %>
   $("#chunklist").html("<%= escape_javascript(render partial: 'chunk_list') %>");
+$("#<%= @chunk.tag_tree_id %>").remove();
 <% end %>
