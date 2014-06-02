@@ -10,7 +10,7 @@
           <th></th>
         <% end %>
       </tr>
-      <% @book.sorted_chunks.each do |chunk| %>
+      <% @book.chunks.each do |chunk| %>
         <tr id="<%= chunk.tag_id %>">
           <td><%= link_to chunk.title, @book.closed? ? book_chunk_path(@book, chunk) : edit_book_chunk_path(@book, chunk) %></td>
           <td><%= chunk.section %></td>

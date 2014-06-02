@@ -1,5 +1,6 @@
 <% if @book.has_chunks? %>
   $("#<%= @chunk.tag_id %>").remove();
+  $("#<%= @chunk.tag_tree_id %>").remove();
 <% else %>
   $("#chunklist").html("<%= escape_javascript(render partial: 'chunk_list') %>");
 <% end %>

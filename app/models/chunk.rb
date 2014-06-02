@@ -7,6 +7,7 @@ class Chunk < ActiveRecord::Base
   default_scope { order('position ASC') }
 
   attr_accessible :title, :section, :content, :user_id, :book_id, :position, :original_updated_at
+  attr_writer :original_updated_at
 
   belongs_to :user
   belongs_to :book
@@ -32,11 +33,13 @@ class Chunk < ActiveRecord::Base
     'chunk_' + id.to_s
   end
 
+  def tag_tree_id
+    'chunk_in_tree_' + id.to_s
+  end
+
   def original_updated_at
     @original_updated_at || updated_at.to_f
   end
-
-  attr_writer :original_updated_at
 
   private
   def handle_conflict
