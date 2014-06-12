@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816215113) do
+ActiveRecord::Schema.define(:version => 20140612091418) do
+
+  create_table "autosave_chunks", :force => true do |t|
+    t.string   "title"
+    t.string   "section"
+    t.text     "content"
+    t.integer  "chunk_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "books", :force => true do |t|
     t.string   "title"

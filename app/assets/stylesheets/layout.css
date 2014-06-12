@@ -46,3 +46,9 @@ div.box h1 {
     margin: 0 auto;
     padding: 8px;
 }
+
+div.hint {
+    color: #ff0000;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

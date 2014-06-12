@@ -6,13 +6,15 @@ class Chunk < ActiveRecord::Base
 
   default_scope { order('position ASC') }
 
-  attr_accessible :title, :section, :content, :user_id, :book_id, :position, :original_updated_at
+  attr_accessible :title, :section, :content, :user_id, :book_id, :position, :original_updated_at, :autosave_chunks
   attr_writer :original_updated_at
 
   belongs_to :user
   belongs_to :book
+  has_many :autosave_chunks
 
   before_validation { self.position ||= book.max_chunk_position + 1 }
+  before_destroy :destroy_autosave_chunks
 
   validates_presence_of :title, :section, :book_id, :user_id, :position
   validates :title, :uniqueness => {:scope => :book_id}
@@ -41,6 +43,10 @@ class Chunk < ActiveRecord::Base
     @original_updated_at || updated_at.to_f
   end
 
+  def has_autosave_chunks?
+    !autosave_chunks.empty?
+  end
+
   private
   def handle_conflict
     if @conflict || updated_at.to_f > original_updated_at.to_f
@@ -58,6 +64,13 @@ class Chunk < ActiveRecord::Base
           self.content << values.last
         end
       end
+    end
+  end
+
+  private
+  def destroy_autosave_chunks
+    autosave_chunks.each do |autosave_chunk|
+      autosave_chunk.destroy
     end
   end
 

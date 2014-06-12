@@ -19,6 +19,7 @@ de:
       index:
         title: Bücherliste
         new: Neues Buch
+        autosave_hint: Es liegen ungespeicherte Änderungen an %{number} Textabschnitt(en) vor
       edit:
         title: Buch editieren
       new:

@@ -1,5 +1,11 @@
 <h1><%= t 'views.book.index.title' %></h1>
 
+<% if unsaved_chunks >= 0 %>
+  <div class='hint'>
+    <%= I18n.t('views.book.index.autosave_hint', number: unsaved_chunks) %>
+  </div>
+<% end %>
+
 <table>
   <tr>
     <th><%= Book.human_attribute_name(:title) %></th>

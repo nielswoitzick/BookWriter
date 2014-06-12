@@ -34,6 +34,23 @@ class Book < ActiveRecord::Base
     users.collect { |u| u.first_name + ' ' + u.last_name }.join(',')
   end
 
+  def has_autosave_chunks?
+    chunks.each do |chunk|
+      return true if chunk.has_autosave_chunks?
+    end
+    false
+  end
+
+  def number_of_chunks_with_at_least_one_autosave
+    count = 0
+    chunks.each do |chunk|
+      if chunk.has_autosave_chunks?
+        count += 1
+      end
+    end
+    count
+  end
+
   def sorted_chunks
     chunks.sort {|a,b| a.section.to_s.casecmp b.section}
   end
