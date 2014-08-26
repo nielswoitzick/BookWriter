@@ -56,6 +56,33 @@ class ChunksController < ApplicationController
     end
   end
 
+  def autosave
+    puts params
+    puts params[:id]
+    puts params[:chunk]
+    @chunk = Chunk.find(params[:id])
+
+    autosave_chunk = AutosaveChunk.new
+    autosave_chunk.content= params[:content]
+    autosave_chunk.section= params[:section]
+    autosave_chunk.title= params[:title]
+    autosave_chunk.chunk= @chunk
+
+    @chunk.autosave_chunks << autosave_chunk
+
+    respond_to do |format|
+      if autosave_chunk.save
+        format.html { redirect_to @book, notice: I18n.t('views.chunk.flash_messages.book_was_successfully_updated') }
+        format.json { head :no_content }
+        format.js
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @chunk.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
+  end
+
   def destroy
     @chunk = Chunk.find(params[:id])
     @chunk.destroy

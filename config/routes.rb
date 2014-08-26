@@ -8,7 +8,9 @@ BookWriter::Application.routes.draw do
     get 'print', :on => :member
     post 'close', :on => :member
     get 'new_edition', :on => :member
-    resources :chunks, :except => [:index]
+    resources :chunks, :except => [:index] do
+      post :autosave, :on => :member
+    end
   end
 
   devise_for :users

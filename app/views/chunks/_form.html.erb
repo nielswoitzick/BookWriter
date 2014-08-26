@@ -35,3 +35,6 @@
       <%= f.submit %>
     </div>
 <% end %>
+
+
+<%= button_to "Autosave", autosave_book_chunk_path, method: :post, remote: true, data: @chunk , form: { 'data-type' => 'json'  } %>
