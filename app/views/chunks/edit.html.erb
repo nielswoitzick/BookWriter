@@ -13,15 +13,21 @@
         CKEDITOR.instances.chunk_content.on('change', autosave);
     });
 
+    var last_update_time = 0;
+
     function autosave() {
-        $.ajax({
-            type: "POST",
-            url: "/books/<%= @book.id %>/chunks/<%= @chunk.id %>/autosave",
-            data: { title: $("#chunk_title").val(), section: $("#chunk_section").val(), content: CKEDITOR.instances.chunk_content.getData() },
-            dataType: "script",
-            success: function (data) {
-                //console.log(data);
-            }
-        });
+        var now = new Date().getTime();
+        if ( now - last_update_time > 5000 ) {
+            last_update_time = now;
+            $.ajax({
+                type: "POST",
+                url: "/books/<%= @book.id %>/chunks/<%= @chunk.id %>/autosave",
+                data: { title: $("#chunk_title").val(), section: $("#chunk_section").val(), content: CKEDITOR.instances.chunk_content.getData() },
+                dataType: "script",
+                success: function (data) {
+                    //console.log(data);
+                }
+            });
+        }
     }
 </script>
