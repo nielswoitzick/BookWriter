@@ -3,3 +3,25 @@
 <%= render 'form' %>
 
 <%= button_to I18n.t('views.back'), @book, method: :get %>
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#chunk_title").change(autosave);
+        $("#chunk_section").change(autosave);
+        CKEDITOR.instances.chunk_content.on('change', autosave);
+    });
+
+    function autosave() {
+        $.ajax({
+            type: "POST",
+            url: "/books/<%= @book.id %>/chunks/<%= @chunk.id %>/autosave",
+            data: { title: $("#chunk_title").val(), section: $("#chunk_section").val(), content: CKEDITOR.instances.chunk_content.getData() },
+            dataType: "script",
+            success: function (data) {
+                //console.log(data);
+            }
+        });
+    }
+</script>
