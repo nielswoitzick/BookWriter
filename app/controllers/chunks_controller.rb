@@ -58,20 +58,24 @@ class ChunksController < ApplicationController
 
   def autosave
     puts params
-    puts params[:id]
-    puts params[:chunk]
     @chunk = Chunk.find(params[:id])
 
-    autosave_chunk = AutosaveChunk.new
-    autosave_chunk.content= params[:content]
-    autosave_chunk.section= params[:section]
-    autosave_chunk.title= params[:title]
-    autosave_chunk.chunk= @chunk
-
-    @chunk.autosave_chunks << autosave_chunk
+    autosave_chunk = AutosaveChunk.find_last_by_chunk_id(@chunk.id)
+    if autosave_chunk && autosave_chunk.equal?(params[:title], params[:section], params[:content])
+      result = true
+    else
+      if !autosave_chunk || autosave_chunk.new_autosave?
+        autosave_chunk = AutosaveChunk.new
+        autosave_chunk.chunk= @chunk
+      end
+      autosave_chunk.title= params[:title]
+      autosave_chunk.section= params[:section]
+      autosave_chunk.content= params[:content]
+      result = @chunk.autosave_chunks << autosave_chunk
+    end
 
     respond_to do |format|
-      if autosave_chunk.save
+      if result
         format.html { redirect_to @book, notice: I18n.t('views.chunk.flash_messages.book_was_successfully_updated') }
         format.json { head :no_content }
         format.js
