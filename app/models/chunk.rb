@@ -15,6 +15,7 @@ class Chunk < ActiveRecord::Base
 
   before_validation { self.position ||= book.max_chunk_position + 1 }
   before_destroy :destroy_autosave_chunks
+  after_update :destroy_autosave_chunks
 
   validates_presence_of :title, :section, :book_id, :user_id, :position
   validates :title, :uniqueness => {:scope => :book_id}
