@@ -19,7 +19,11 @@
           <td><%= chunk.versions.last.id unless chunk.versions == nil %></td>
           <% unless @book.closed? %>
             <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, remote: true, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
-            <td></td>
+            <td>
+              <% unless !chunk.has_autosave_chunks? %>
+                <%= button_to I18n.t('views.show_autosaves'), show_autosaves_book_chunk_path(@book, chunk), method: :post, remote: true %>
+              <% end %>
+            </td>
           <% end %>
         </tr>
       <% end %>
@@ -28,5 +32,7 @@
     <p><%= I18n.t('views.chunk.index.empty') %></p>
   <% end %>
 </div>
+
+<div id='dialog' style='display:none;'></div>
 
 <br/>

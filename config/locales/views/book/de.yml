@@ -8,6 +8,7 @@ de:
     are_you_sure: Sind Sie sicher?
     back: Zurück
     edit: Editieren
+    show_autosaves: Nicht gespeicherte Änderungen anzeigen
     book:
       export:
         pdf: PDF-Export

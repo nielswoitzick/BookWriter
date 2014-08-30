@@ -1,0 +1,36 @@
+$(function() {
+  $('#dialog').html('<%= escape_javascript(render partial: 'autosave_chunk_list') %>');
+
+  var dialog, form;
+
+  function recreate() {
+    var valid = true;
+    if (valid) {
+      dialog.dialog( "close" );
+    }
+    return valid;
+  }
+
+  dialog = $("#dialog").dialog({
+    autoOpen: false,
+    height: 300,
+    width: 350,
+    modal: true,
+    buttons: {
+      "Wiederherstellen": recreate,
+      Cancel: function() {
+        dialog.dialog( "close" );
+      }
+    },
+    close: function() {
+      form[ 0 ].reset();
+    }
+  });
+
+  form = dialog.find( "form" ).on( "submit", function( event ) {
+    event.preventDefault();
+    recreate();
+  });
+
+  dialog.dialog( "open" );
+});

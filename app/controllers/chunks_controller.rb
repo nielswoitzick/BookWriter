@@ -56,6 +56,14 @@ class ChunksController < ApplicationController
     end
   end
 
+  def show_autosaves
+    @chunk = Chunk.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def autosave
     puts params
     @chunk = Chunk.find(params[:id])

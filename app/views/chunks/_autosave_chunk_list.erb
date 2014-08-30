@@ -1,0 +1,17 @@
+<form>
+  <table>
+    <tr>
+      <th><%= AutosaveChunk.human_attribute_name(:title) %></th>
+      <th><%= AutosaveChunk.human_attribute_name(:section) %></th>
+    </tr>
+
+    <% @chunk.autosave_chunks.each do |autosave_chunk| %>
+      <tr>
+        <td><%= autosave_chunk.title %></td>
+        <td><%= autosave_chunk.section %></td>
+      </tr>
+    <% end %>
+
+  </table>
+  <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+</form>

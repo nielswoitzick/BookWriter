@@ -10,6 +10,7 @@ BookWriter::Application.routes.draw do
     get 'new_edition', :on => :member
     resources :chunks, :except => [:index] do
       post :autosave, :on => :member
+      post :show_autosaves, :on => :member
     end
   end
 
