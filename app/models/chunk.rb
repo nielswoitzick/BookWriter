@@ -48,6 +48,12 @@ class Chunk < ActiveRecord::Base
     !autosave_chunks.empty?
   end
 
+  def destroy_autosave_chunks
+    autosave_chunks.each do |autosave_chunk|
+      autosave_chunk.destroy
+    end
+  end
+
   private
   def handle_conflict
     if @conflict || updated_at.to_f > original_updated_at.to_f
@@ -65,13 +71,6 @@ class Chunk < ActiveRecord::Base
           self.content << values.last
         end
       end
-    end
-  end
-
-  private
-  def destroy_autosave_chunks
-    autosave_chunks.each do |autosave_chunk|
-      autosave_chunk.destroy
     end
   end
 

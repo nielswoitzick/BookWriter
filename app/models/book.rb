@@ -9,6 +9,7 @@ class Book < ActiveRecord::Base
   validates :edition, :uniqueness => {:scope => :title}, numericality: { only_integer: true, greater_than: 0 }
 
   before_destroy :destroy_chunks
+  after_update :destroy_autosave_chunks_if_book_closed
 
   def sliced_attributes
     attributes.slice('title', 'genre', 'abstract', 'tags')
@@ -59,6 +60,15 @@ class Book < ActiveRecord::Base
   def destroy_chunks
     chunks.each do |chunk|
       chunk.destroy
+    end
+  end
+
+  private
+  def destroy_autosave_chunks_if_book_closed
+    if (closed?)
+      chunks.each do |chunk|
+        chunk.destroy_autosave_chunks
+      end
     end
   end
 
