@@ -1,0 +1,12 @@
+# ruby encoding: utf-8
+
+de:
+  activerecord:
+    models:
+      autosave_chunk: 'Autosave'
+    attributes:
+      autosave_chunk:
+        title: 'Titel'
+        section: 'Abschnitt'
+        content: 'Inhalt'
+        updated_at: 'Zeitpunkt'
