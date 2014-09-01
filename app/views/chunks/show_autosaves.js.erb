@@ -2,11 +2,14 @@ $(function() {
   $('#dialog').html('<%= escape_javascript(render partial: 'autosave_chunk_list') %>');
 
   var dialog, form;
+  var submitted = false;
 
   function recreate() {
     var valid = true;
     if (valid) {
+      $.post(form.attr('action'), form.serialize(), null, 'json');
       dialog.dialog( "close" );
+      alert('Textabschnitt wurde erfolgreich wiederhergestellt!');
     }
     return valid;
   }
@@ -14,7 +17,7 @@ $(function() {
   dialog = $("#dialog").dialog({
     autoOpen: false,
     height: 500,
-    width: 650,
+    width: 750,
     modal: true,
     buttons: {
       "Wiederherstellen": recreate,
@@ -29,7 +32,10 @@ $(function() {
 
   form = dialog.find( "form" ).on( "submit", function( event ) {
     event.preventDefault();
-    recreate();
+    if (!submitted) {
+      submitted = true;
+      recreate();
+    }
   });
 
   dialog.dialog( "open" );

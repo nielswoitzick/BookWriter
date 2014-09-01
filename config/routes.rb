@@ -11,6 +11,7 @@ BookWriter::Application.routes.draw do
     resources :chunks, :except => [:index] do
       post :autosave, :on => :member
       post :show_autosaves, :on => :member
+      put :recreate_autosave, :on => :member
     end
   end
 

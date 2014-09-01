@@ -95,6 +95,24 @@ class ChunksController < ApplicationController
     end
   end
 
+  def recreate_autosave
+    @chunk = Chunk.find(params[:id])
+    autosave = AutosaveChunk.find(params[:autosave_id])
+
+    @chunk.title= autosave.title
+    @chunk.section= autosave.section
+    @chunk.content= autosave.content
+
+    respond_to do |format|
+      if @chunk.save
+        format.js
+      else
+        format.js
+      end
+    end
+
+  end
+
   def destroy
     @chunk = Chunk.find(params[:id])
     @chunk.destroy
