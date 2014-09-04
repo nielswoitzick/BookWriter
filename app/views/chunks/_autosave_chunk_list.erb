@@ -1,23 +1,30 @@
 <%= form_for([@book, @chunk], :url => recreate_autosave_book_chunk_path(@book, @chunk)) do |f| %>
+  <style type="text/css">
+    <%= Diffy::CSS.to_s %>
+    .diff {
+        width: 800px;
+    }
+  </style>
   <table>
     <tr>
-      <th>Auswahl</th>
+      <th></th>
       <th><%= AutosaveChunk.human_attribute_name(:updated_at) %></th>
       <th><%= AutosaveChunk.human_attribute_name(:title) %></th>
       <th><%= AutosaveChunk.human_attribute_name(:section) %></th>
-      <th><%= AutosaveChunk.human_attribute_name(:content) %></th>
     </tr>
 
-    <% @chunk.autosave_chunks.each do |autosave_chunk| %>
+    <% @chunk.autosave_chunks.each_with_index do |autosave_chunk, index| %>
       <tr>
-        <td><input type="radio" name="autosave_id" value="<%= autosave_chunk.id %>" /></td>
+        <td><input type="radio" name="autosave_id" value="<%= autosave_chunk.id %>" <%= index == 0 ? 'checked' : 'none' %> /></td>
         <td><%= autosave_chunk.updated_at %></td>
         <td><%= autosave_chunk.title %></td>
         <td><%= autosave_chunk.section %></td>
-        <td><%= autosave_chunk.content %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <th colspan="3"><%=raw Diffy::Diff.new(autosave_chunk.chunk.content.gsub(/^$\n/, ''), autosave_chunk.content.gsub(/^$\n/, ''), :include_plus_and_minus_in_html => true).to_s(:html) %></th>
       </tr>
     <% end %>
-
   </table>
   <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 <% end %>

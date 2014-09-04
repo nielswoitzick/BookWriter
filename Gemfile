@@ -17,6 +17,7 @@ gem 'ckeditor'              # WYSIWYG-Editor
 gem 'wkhtmltopdf-binary'    # PDF-Generierung aus HTML-Daten
 gem 'wicked_pdf'            # PDF-Export
 gem 'jquery-ui-rails'       # Dialog
+gem 'diffy'
 
 # Gems used only for assets and not required
 # in production environments by default.
