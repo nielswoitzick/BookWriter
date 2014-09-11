@@ -5,13 +5,20 @@ $(function() {
   var submitted = false;
 
   function recreate() {
-    var valid = true;
-    if (valid) {
-      $.post(form.attr('action'), form.serialize(), null, 'json');
-      dialog.dialog( "close" );
-      alert('Textabschnitt wurde erfolgreich wiederhergestellt!');
-    }
-    return valid;
+    $.post(form.attr('action'), form.serialize(), null, 'json');
+
+    var f = JSON.stringify(form.serialize(), null, 0).replace(/.*chunktitle=/, '').replace('"', '');
+    var title = f.replace(/&chunksection=.*/, '').replace('+', ' ');
+    var section = f.replace(/.*chunksection=/, '').replace('+', ' ');
+    var version = <%= @chunk.versions.last.id %> + 1;
+
+    $("#recreate_title_column_<%= @chunk.tag_id %>").html(title);
+    $("#recreate_section_column_<%= @chunk.tag_id %>").html(section);
+    $("#recreate_version_column_<%= @chunk.tag_id %>").html(version);
+    $("#recreate_column_<%= @chunk.tag_id %>").remove();
+
+    dialog.dialog( "close" );
+    return true;
   }
 
   dialog = $("#dialog").dialog({

@@ -13,13 +13,13 @@
       </tr>
       <% @book.chunks.each do |chunk| %>
         <tr id="<%= chunk.tag_id %>">
-          <td><%= link_to chunk.title, @book.closed? ? book_chunk_path(@book, chunk) : edit_book_chunk_path(@book, chunk) %></td>
-          <td><%= chunk.section %></td>
+          <td><%= link_to chunk.title, @book.closed? ? book_chunk_path(@book, chunk) : edit_book_chunk_path(@book, chunk), html_options = { :id => "recreate_title_column_" + chunk.tag_id } %></td>
+          <td id="recreate_section_column_<%= chunk.tag_id %>"><%= chunk.section %></td>
           <td><%= chunk.username %></td>
-          <td><%= chunk.versions.last.id unless chunk.versions == nil %></td>
+          <td id="recreate_version_column_<%= chunk.tag_id %>"><%= chunk.versions.last.id unless chunk.versions == nil %></td>
           <% unless @book.closed? %>
             <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, remote: true, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
-            <td>
+            <td id="recreate_column_<%= chunk.tag_id %>">
               <% unless !chunk.has_autosave_chunks? %>
                 <%= button_to I18n.t('views.show_autosaves'), show_autosaves_book_chunk_path(@book, chunk), method: :post, remote: true %>
               <% end %>

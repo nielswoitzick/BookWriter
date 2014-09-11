@@ -24,6 +24,8 @@
         <td></td>
         <th colspan="3"><%=raw Diffy::Diff.new(autosave_chunk.chunk.content.gsub(/^$\n/, ''), autosave_chunk.content.gsub(/^$\n/, ''), :include_plus_and_minus_in_html => true).to_s(:html) %></th>
       </tr>
+      <input type="hidden" name="chunktitle" value="<%= autosave_chunk.title %>" />
+      <input type="hidden" name="chunksection" value="<%= autosave_chunk.section %>" />
     <% end %>
   </table>
   <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
